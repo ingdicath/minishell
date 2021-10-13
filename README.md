@@ -26,6 +26,7 @@
 
 [termcap](https://man7.org/linux/man-pages/man5/termcap.5.html)
 
+[terminal](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap11.html#tag_11_01_07)
 
 ## install readline libraries
 

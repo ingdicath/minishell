@@ -25,3 +25,14 @@
 [Exit Codes](https://tldp.org/LDP/abs/html/exitcodes.html#EXITCODESREF)
 
 [termcap](https://man7.org/linux/man-pages/man5/termcap.5.html)
+
+
+## install readline libraries
+
+Open your terminal and run following commands:
+```
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 2> /dev/null
+```
+```
+brew install readline
+```

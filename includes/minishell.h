@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/05 18:12:53 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/14 11:37:10 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/14 14:32:41 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,90 +15,37 @@
 
 # include "../libft/libft.h"
 # include <stdio.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <limits.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <limits.h>
 # include <signal.h>
 # include <dirent.h>
 # include <stdbool.h>
+# include <errno.h>
 # include <termios.h>
-# include <sys/wait.h>
-# include <sys/ioctl.h>
+# include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
-// typedef struct s_term
-// {
-// 	struct termios	term;
-// 	struct termios	save;
-// 	char			*cm;
-// 	char			*ce;
-// }					t_term;
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+}	t_env;
 
-// typedef struct s_cmd
-// {
-// 	char			**av;
-// 	int				ac;
-// 	int				type;
-// 	int				pip[2];
-// 	int				fd_in;
-// 	int				fd_out;
-// 	struct s_cmd	*next;
-// 	struct s_cmd	*prev;
-// }					t_cmd;
+typedef struct s_cmd
+{
+	char	*cmd;
+	char	**args;
+	t_list	*redir;
+}	t_cmd;
 
-// typedef struct s_env
-// {
-// 	char			*key;
-// 	char			*value;
-// 	int				has_equal;
-// 	struct s_env	*next;
-// }					t_env;
+int		g_exit_status;
 
-// typedef struct s_token
-// {
-// 	char			*str;
-// 	int				type;
-// 	struct s_token	*next;
-// }					t_token;
+void	free_env_list(t_list *env);
 
-// typedef struct s_keypos
-// {
-// 	int				col;
-// 	int				row;
-// }					t_keypos;
-
-// typedef struct s_save
-// {
-// 	char			*input;
-// 	int				flag;
-// 	struct s_save	*prev;
-// 	struct s_save	*next;
-// }					t_save;
-
-// typedef struct s_state
-// {
-// 	t_token			*token_head;
-// 	t_env			*env_head;
-// 	t_cmd			*cmd_head;
-// 	t_path			*path_head;
-// 	t_term			t;
-// 	t_save			*save_head;
-// 	int				s_flag;
-// 	char			*input;
-// 	char			*input2;
-// 	int				is_fork;
-// 	int				ret;
-// 	t_keypos		cur;
-// 	t_keypos		max;
-// 	t_keypos		start;
-// }					t_state;
-
-// t_state	g_state;
-
-void				clean_str(char *s);
-
-void				parse_input(char *input);
+int		put_err(char *err_msg);
+int		syntax_validation(char *s);
 
 #endif

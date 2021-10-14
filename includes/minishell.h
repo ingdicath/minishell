@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/05 18:12:53 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/13 14:48:17 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/14 11:37:10 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,9 @@
 // }					t_state;
 
 // t_state	g_state;
+
+void				clean_str(char *s);
+
+void				parse_input(char *input);
 
 #endif

@@ -28,6 +28,10 @@
 
 [terminal](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap11.html#tag_11_01_07)
 
+[redirections](https://www.gnu.org/software/bash/manual/html_node/Redirections.html)
+
+[how to use herdoc](https://www.howtogeek.com/719058/how-to-use-here-documents-in-bash-on-linux/)
+
 ## install readline libraries
 
 Open your terminal and run following commands:

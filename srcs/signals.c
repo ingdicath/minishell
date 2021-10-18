@@ -1,45 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_env.c                                        :+:    :+:            */
+/*   signals.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/10/14 10:53:31 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/14 14:38:17 by dsalaman      ########   odam.nl         */
+/*   Created: 2021/10/14 11:48:27 by dsalaman      #+#    #+#                 */
+/*   Updated: 2021/10/14 14:40:02 by dsalaman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-typedef struct s_env
+//SIGINT
+void	signal_handler(int signal)
 {
-	char			*key;
-	char			*value;
-	int				has_equal;
-	struct s_env	*next;
-}			t_env;
-
-t_env	*g_state;
-
-void	parse_env(char **envp, t_env *state)
-{
-	int		i;
-	int		j;
-	char	*key;
-	char	*value;
-
-	i = 0;
-	while (envp[i])
+	if (signal == SIGINT)
 	{
-		j = 0;
-		while (envp[i][j])
-		{
-			key = ft_substr(envp[i], 0, j);
-			value = ft_substr(envp[i], j + 1, ft_strlen(envp[i]) - j - 1);
-			break ;
-		}
-		j++;
+		printf("\n"); //Move to a new line
+		rl_on_new_line(); //regenerate the prompt on a newline
+		rl_replace_line("", 0); //Clear the previous text
+		rl_redisplay(); // Redisplays the prompt
 	}
-	// update state
+	else if (signal == SIGQUIT)
+	{
+		// if prompt is empty, 'Ctrl + D' must print "exit"
+		printf("exit\n");
+		// exit(0);
+	}
 }

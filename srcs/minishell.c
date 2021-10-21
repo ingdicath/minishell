@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/20 20:45:48 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/14 13:45:02 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/21 11:05:50 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	}
 	input = NULL;
-	env = parse_env(envp); //
-	signal(SIGINT, handle_signal); //
-	signal(SIGQUIT, handle_signal); //
+	env = parse_env(envp); //for diana
+	signal(SIGINT, handle_signal); //for diana
+	signal(SIGQUIT, handle_signal); // for diana
 	while (1)
 	{
 		cmds = NULL;
@@ -52,7 +52,7 @@ int	main(int argc, char **argv, char **envp)
 		if (input != NULL && !syntax_validation(input))//
 		{
 			cmds = split_by_pipes(cmds, input, temp);//
-			exec_cmd(cmds, env);//
+			exec_cmd(cmds, env); // for diana
 		}
 		free(input);
 		free_cmds(cmds);//

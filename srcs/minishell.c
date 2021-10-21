@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/20 20:45:48 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/21 11:05:50 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/21 11:37:01 by dsalaman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	main(int argc, char **argv, char **envp)
 	input = NULL;
 	env = parse_env(envp); //for diana
 	signal(SIGINT, handle_signal); //for diana
-	signal(SIGQUIT, handle_signal); // for diana
+	// signal(SIGQUIT, handle_signal); // for diana
+	signal(SIGQUIT, SIG_IGN); // SIG_IGN specifies that the signal should be ignored.
 	while (1)
 	{
 		cmds = NULL;

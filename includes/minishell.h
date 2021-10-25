@@ -42,7 +42,7 @@ typedef struct s_cmd
 	t_list	*redir;
 }	t_cmd;
 
-typedef struct s_redir //new
+typedef struct s_redir
 {
 	char	type;
 	char	*file;
@@ -69,5 +69,6 @@ void	ft_swap(char **str1, char **str2);
 
 /* Preparing environment variables */
 void	reset_env_node(t_env *new);
+void	parse_env(char **envp);
 
 #endif

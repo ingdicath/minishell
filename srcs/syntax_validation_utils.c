@@ -6,11 +6,28 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/21 13:08:02 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/25 11:54:08 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/25 15:43:51 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+
+int	put_err(char *err_msg)
+{
+	ft_putendl_fd(err_msg, 2);
+	return (1);
+}
+
+int	check_quote(char c, int quote)
+{
+	if (c == '"' && quote == 0)
+		quote = 2;
+	else if (c == '\'' && quote == 0)
+		quote = 1;
+	else if ((c == '"' && quote == 2) || (c == '\'' && quote == 1))
+		quote = 0;
+	return (quote);
+}
 
 static int	skip_quotes(char *str, int i)
 {
@@ -67,34 +84,6 @@ int	redir_error(char *str)
 			i = check_redir(str, i);
 		if (i == -1)
 			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	quote_error(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '"')
-		{
-			i++;
-			while (str[i] && str[i] != '"')
-				i++;
-			if (str[i] != '"')
-				return (put_err("minishell: unclosed double quote"));
-		}
-		if (str[i] == '\'')
-		{
-			i++;
-			while (str[i] && str[i] != '\'')
-				i++;
-			if (str[i] != '\'')
-				return (put_err("minishell: unclosed single quote"));
-		}
 		i++;
 	}
 	return (0);

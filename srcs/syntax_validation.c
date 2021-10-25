@@ -6,27 +6,38 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/14 13:44:35 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/25 12:03:51 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/25 15:44:15 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	put_err(char *err_msg)
+static int	quote_error(char *str)
 {
-	ft_putendl_fd(err_msg, 2);
-	return (1);
-}
+	int	i;
 
-static int	check_quote(char c, int quote)
-{
-	if (c == '"' && quote == 0)
-		quote = 2;
-	else if (c == '\'' && quote == 0)
-		quote = 1;
-	else if ((c == '"' && quote == 2) || (c == '\'' && quote == 1))
-		quote = 0;
-	return (quote);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '"')
+		{
+			i++;
+			while (str[i] && str[i] != '"')
+				i++;
+			if (str[i] != '"')
+				return (put_err("minishell: unclosed double quote"));
+		}
+		if (str[i] == '\'')
+		{
+			i++;
+			while (str[i] && str[i] != '\'')
+				i++;
+			if (str[i] != '\'')
+				return (put_err("minishell: unclosed single quote"));
+		}
+		i++;
+	}
+	return (0);
 }
 
 static int	pipe_quote_error(char *str)

@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/05 18:12:53 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/25 14:40:49 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/25 17:52:12 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # include <readline/history.h>
 # include <string.h>
 
+# include "parse.h"
+# include "exec.h"
+
 typedef struct s_env
 {
 	char			*key;
@@ -48,14 +51,30 @@ typedef struct s_redir
 	char	*file;
 }	t_redir;
 
+typedef struct s_var
+{
+	int						i;
+	char					*result;
+}	t_var;
+
+typedef struct s_parse
+{
+	int						arg_num;
+	int						i;
+	int						ambigous;
+	int						ret_value;
+	char					**extra_args;
+	int						outside_quote;
+	t_var					var;
+}	t_parse;
 
 int		g_exit_status;
 
 void	free_env_list(t_list *env);
 
 int		put_err(char *err_msg);
+int		check_quote(char c, int quote);
 int		redir_error(char *str);
-int		quote_error(char *str);
 int		syntax_validation(char *s);
 
 // signals

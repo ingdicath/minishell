@@ -6,11 +6,12 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:46:43 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/25 14:41:52 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/25 15:05:06 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include "../includes/parse.h"
 
 static char	replace_pip(char *s)
 {
@@ -20,7 +21,7 @@ static char	replace_pip(char *s)
 
 	quote = 0;
 	tmp = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (tmp = NULL)
+	if (tmp == NULL)
 		return (NULL);
 	i = 0;
 	while (s[i])
@@ -41,6 +42,19 @@ static char	replace_pip(char *s)
 	return (tmp);
 }
 
+static void	free_commands(char **commands)
+{
+	int	i;
+
+	i = 0;
+	while (commands[i])
+	{
+		free(commands[i]);
+		i++;
+	}
+	free(commands);
+}
+
 t_list	*split_by_pipes(t_list *cmds, char *input, t_list *env)
 {
 	char	**commands;
@@ -53,21 +67,13 @@ t_list	*split_by_pipes(t_list *cmds, char *input, t_list *env)
 	commands = ft_split(input, -124);
 	while (commands[i])
 	{
-		tmp = new_node(commands[i], env);
+		tmp = get_new_node(commands[i], env);
 		new = ft_lstnew(tmp);
 		ft_lstadd_back(&cmds, new);
 		i++;
 	}
-	i = 0;
 	if (commands)
-	{
-		while (commands[i])
-		{
-			free(commands[i]);
-			i++;
-		}
-		free(commands);
-	}
+		free_commands(commands);
 	free(input);
 	return (cmds);
 }

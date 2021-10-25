@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include "../includes/exec.h"
 
 /*
 	rl_on_new_line() -> regenerate the prompt on a newline.

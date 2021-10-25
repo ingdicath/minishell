@@ -1,6 +1,14 @@
-//
-// Created by Diani on 24/10/2021.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   prepare_env.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/10/25 11:01:50 by dsalaman      #+#    #+#                 */
+/*   Updated: 2021/10/25 11:01:52 by dsalaman      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/exec.h"
 
@@ -32,41 +40,14 @@ static int	sort_envp(char **tab, int size)
 	return (0);
 }
 
-char	*get_key(char *str)
-{
-	int		i;
-	char	*temp;
-
-	i = 0;
-	temp = NULL;
-	while (str[i] != '=' && str[i] != '\0')
-		i++;
-	temp = ft_substr(str, 0, i);
-	return (temp);
-}
-
-char	*get_value(char *str)
-{
-	int		i;
-	char	*temp;
-
-	i = 0;
-	temp = NULL;
-	while (str[i] != '=' && str[i])
-		i++;
-	if (str[i] == '=')
-		temp = ft_substr(str, i + 1, ft_strlen(str) - i);
-	return (temp);
-}
-
-int	display_envp(t_list *envp)
+int	show_envp(t_list *envp)
 {
 	int		i;
 	int		j;
 	char	**tab;
 
 	envp = envp->next;
-	tab = list_to_array(envp);
+	tab = convert_list_to_array(envp);
 	sort_envp(tab, ft_lstsize(envp) + 1);
 	i = 0;
 	while (tab[i] != NULL)
@@ -87,7 +68,7 @@ int	display_envp(t_list *envp)
 	return (0);
 }
 
-char	**list_to_array(t_list *list)
+char	**convert_list_to_array(t_list *list)
 {
 	int		i;
 	int		size;
@@ -100,7 +81,7 @@ char	**list_to_array(t_list *list)
 	while (i < size - 1)
 	{
 		env = list->content;
-		tab[i] = join_env(env); //define
+		tab[i] = join_env(env);
 		list = list->next;
 		i++;
 	}
@@ -121,4 +102,17 @@ char	*join_env(t_env *env)
 		return (tab);
 	}
 	return (env->key);
+}
+
+t_env	*make_env_node(char *key, char *value)
+{
+	t_env	*new;
+
+	new = (t_env *)malloc(sizeof(t_env));
+	if (!new)
+		return (NULL);
+	reset_env_node(new);
+	new->key = ft_strdup(key);
+	new->value = ft_strdup(value);
+	return (new);
 }

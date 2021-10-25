@@ -67,4 +67,7 @@ void	ft_execve(char *path, char **args, char **tab);
 void	ft_dup2(int fd1, int fd2);
 void	ft_swap(char **str1, char **str2);
 
+/* Preparing environment variables */
+void	reset_env_node(t_env *new);
+
 #endif

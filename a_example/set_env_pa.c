@@ -12,29 +12,29 @@
 
 #include "parsing.h"
 
-char	*get_key(char *s)
+char	*get_env_key(char *s)
 {
 	int		i;
 	char	*temp;
 
 	i = 0;
-	while (s[i] != '=' && s[i] != '\0')
+	while (str[i] != '=' && str[i] != '\0')
 		i++;
-	temp = ft_substr(s, 0, i);
+	temp = ft_substr(str, 0, i);
 	return (temp);
 }
 
-char	*get_value(char *s)
+char	*get_env_value(char *s)
 {
 	int		i;
 	char	*temp;
 
 	temp = NULL;
 	i = 0;
-	while (s[i] != '=' && s[i])
+	while (str[i] != '=' && str[i])
 		i++;
-	if (s[i] == '=')
-		temp = ft_substr(s, i + 1, ft_strlen(s) - i);
+	if (str[i] == '=')
+		temp = ft_substr(str, i + 1, ft_strlen(str) - i);
 	return (temp);
 }
 

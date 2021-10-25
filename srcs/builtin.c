@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   builtin.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/10/25 11:00:35 by dsalaman      #+#    #+#                 */
+/*   Updated: 2021/10/25 11:00:39 by dsalaman      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/exec.h"
 
 int	is_builtin(t_cmd *cmd)
@@ -24,7 +36,6 @@ int	is_builtin(t_cmd *cmd)
 int	execute_builtin(t_cmd *cmd, t_list *envp, int status)
 {
 	char	*pwd_path; //static char	*gpwd we can't use static variables
-
 	if (pwd_path == NULL) //check this
 		pwd_path = getcwd(NULL, 0); //check this
 	if (status == CD)
@@ -44,7 +55,7 @@ int	execute_builtin(t_cmd *cmd, t_list *envp, int status)
 	return (1);
 }
 
-int	builtin(t_cmd *cmd, t_list *envp, int status) //check for better name
+int	run_builtin(t_cmd *cmd, t_list *envp, int status)
 {
 	int	input;
 	int	output;

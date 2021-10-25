@@ -62,7 +62,7 @@ int		exec_builtin(t_cmd *cmd, t_list *envp, int status);
 
 // cmd_ex.c
 void	wait_cmds(int nbr_cmds);
-void	close_pfds(int *pfds, int nbr);
+void	close_pipes_fds(int *pfds, int nbr);
 
 int		*create_pipes(int nbr_pipes);
 int		create_childs(t_list *cmds, int *pfds, t_list *envp);

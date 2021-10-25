@@ -1,6 +1,14 @@
-//
-// Created by Diani on 24/10/2021.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   mini_chdir.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/10/25 11:01:17 by dsalaman      #+#    #+#                 */
+/*   Updated: 2021/10/25 11:01:20 by dsalaman      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/exec.h"
 
@@ -41,9 +49,9 @@ static void	swap_directory(t_list *envp, char **get_pwd)
 	*pwd = ft_strjoin(*get_pwd, "");
 }
 
-static void change_directory(char *str, char *dir, char **get_pwd, t_list *envp) //check for better name
+static void	change_directory(char *str, char *dir, char **get_pwd, t_list *envp) //check for better name
 {
-	char *temp;
+	char	*temp;
 
 	if (str == NULL)
 	{
@@ -71,7 +79,7 @@ static char	*get_directory(char *dir, t_list *envp)
 	char	*home;
 
 	home = NULL;
-	if (dir != 	NULL)
+	if (dir != NULL)
 		return (dir);
 	while (envp != NULL)
 	{

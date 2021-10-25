@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include "../includes/exec.h"
 
 static char	*get_input(char *input, t_list *env)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   syntax_validation_redir.c                          :+:    :+:            */
+/*   syntax_validation_utils.c                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/21 13:08:02 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/21 13:38:34 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/25 11:54:08 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static int	check_redir(char *str, int i)
 		return (-1);
 	}
 	return (i);
-
 }
 
 int	redir_error(char *str)
@@ -71,3 +70,32 @@ int	redir_error(char *str)
 		i++;
 	}
 	return (0);
+}
+
+int	quote_error(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '"')
+		{
+			i++;
+			while (str[i] && str[i] != '"')
+				i++;
+			if (str[i] != '"')
+				return (put_err("minishell: unclosed double quote"));
+		}
+		if (str[i] == '\'')
+		{
+			i++;
+			while (str[i] && str[i] != '\'')
+				i++;
+			if (str[i] != '\'')
+				return (put_err("minishell: unclosed single quote"));
+		}
+		i++;
+	}
+	return (0);
+}

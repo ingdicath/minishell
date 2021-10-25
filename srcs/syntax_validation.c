@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/14 13:44:35 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/21 13:07:03 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/25 12:03:51 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,30 @@ int	put_err(char *err_msg)
 	return (1);
 }
 
+static int	check_quote(char c, int quote)
+{
+	if (c == '"' && quote == 0)
+		quote = 2;
+	else if (c == '\'' && quote == 0)
+		quote = 1;
+	else if ((c == '"' && quote == 2) || (c == '\'' && quote == 1))
+		quote = 0;
+	return (quote);
+}
+
 static int	pipe_quote_error(char *str)
 {
 	int	i;
 	int	quote;
-	int	pipe;
 
 	i = 0;
 	quote = 0;
-	pipe = 0;
 	while (str[i])
 	{
 		if (str[i] == '"' || str[i] == '\'')
 		{
+			quote = check_quote(str[i], quote);
 			i++;
-			if (str[i] == '"' && quote == 0)
-				quote = 2;
-			else if (str[i] == '\'' && quote == 0)
-				quote = 1;
-			else if ((str[i] == '"' && quote == 2) || (str[i] == '\'' && quote == 1))
-				quote = 0;
 		}
 		if (str[i] == '|' && !quote)
 		{
@@ -45,35 +49,8 @@ static int	pipe_quote_error(char *str)
 			while (str[i] == ' ')
 				i++;
 			if (str[i] == '|')
-				return (put_err("minishell: syntax error near unexpected token `|'"));
-		}
-		i++;
-	}
-	return (0);
-}
-
-static int	quote_error(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '"')
-		{
-			i++;
-			while (str[i] && str[i] != '"')
-				i++;
-			if (str[i] != '"')
-				return (put_err("minishell: unclosed double quote"));
-		}
-		if (str[i] == '\'')
-		{
-			i++;
-			while (str[i] && str[i] != '\'')
-				i++;
-			if (str[i] != '\'')
-				return (put_err("minishell: unclosed single quote"));
+				return (put_err
+					("minishell: syntax error near unexpected token `|'"));
 		}
 		i++;
 	}
@@ -87,16 +64,20 @@ static int	semi_pipe_error(char *str)
 	if (str[0] == ';')
 	{
 		if (str[1] == ';')
-			return (put_err("minishell: syntax error near unexpected token `;;'"));
+			return (put_err
+				("minishell: syntax error near unexpected token `;;'"));
 		else
-			return (put_err("minishell: syntax error near unexpected token `;'"));
+			return (put_err
+				("minishell: syntax error near unexpected token `;'"));
 	}
 	else if (str[0] == '|')
 	{
 		if (str[1] == '|')
-			return (put_err("minishell: syntax error near unexpected token `||'"));
+			return (put_err
+				("minishell: syntax error near unexpected token `||'"));
 		else
-			return (put_err("minishell: syntax error near unexpected token `|'"));
+			return (put_err
+				("minishell: syntax error near unexpected token `|'"));
 	}
 	if (pipe_quote_error(str))
 		return (1);
@@ -116,7 +97,8 @@ int	syntax_validation(char *s)
 	if (str[ft_strlen(str) - 1] == '|')
 	{
 		free(str);
-		return (put_err("minishell: syntax error near unexpected token `newline'"));
+		return (put_err
+			("minishell: syntax error near unexpected token `newline'"));
 	}
 	free(str);
 	return (0);

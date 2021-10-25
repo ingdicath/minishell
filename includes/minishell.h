@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/05 18:12:53 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/14 14:32:41 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/25 11:53:33 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@ void	free_env_list(t_list *env);
 
 int		put_err(char *err_msg);
 int		syntax_validation(char *s);
+int		quote_error(char *str);
+int		redir_error(char *str);
 
 #endif

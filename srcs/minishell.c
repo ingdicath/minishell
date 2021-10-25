@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/20 20:45:48 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/21 13:55:57 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/25 14:41:49 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv, char **envp)
 		temp = env;
 		if (input != NULL && !syntax_validation(input))
 		{
-			cmds = split_by_pipes(cmds, input, temp);//
+			cmds = split_by_pipes(cmds, input, temp);
 			exec_cmd(cmds, env); // for diana
 		}
 		free(input);

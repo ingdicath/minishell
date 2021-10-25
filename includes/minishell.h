@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minishell.c                                        :+:    :+:            */
+/*   minishell.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/05 18:12:53 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/25 14:37:09 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/25 14:40:49 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int		g_exit_status;
 void	free_env_list(t_list *env);
 
 int		put_err(char *err_msg);
+int		redir_error(char *str);
+int		quote_error(char *str);
 int		syntax_validation(char *s);
 
 // signals

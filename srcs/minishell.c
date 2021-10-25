@@ -43,7 +43,8 @@ int	main(int argc, char **argv, char **envp)
 	input = NULL;
 	env = parse_env(envp); //for diana
 	signal(SIGINT, handle_signal); //for diana
-	signal(SIGQUIT, handle_signal); //for diana
+	// signal(SIGQUIT, handle_signal); // for diana
+	signal(SIGQUIT, SIG_IGN); // SIG_IGN specifies that the signal should be ignored.
 	while (1)
 	{
 		cmds = NULL;

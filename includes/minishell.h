@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   minishell.h                                        :+:    :+:            */
+/*   minishell.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/05 18:12:53 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/25 11:53:33 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/25 14:37:09 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <string.h>
 
 typedef struct s_env
 {
@@ -41,13 +42,27 @@ typedef struct s_cmd
 	t_list	*redir;
 }	t_cmd;
 
+typedef struct s_redir //new
+{
+	char	type;
+	char	*file;
+}	t_redir;
+
+
 int		g_exit_status;
 
 void	free_env_list(t_list *env);
 
 int		put_err(char *err_msg);
 int		syntax_validation(char *s);
-int		quote_error(char *str);
-int		redir_error(char *str);
+
+// signals
+void	handle_signal(int signal);
+
+// utils
+int		ft_strcasecmp(const char *s1, const char *s2);
+void	ft_execve(char *path, char **args, char **tab);
+void	ft_dup2(int fd1, int fd2);
+void	ft_swap(char **str1, char **str2);
 
 #endif

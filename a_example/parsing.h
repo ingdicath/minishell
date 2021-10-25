@@ -68,8 +68,8 @@ int							g_exit_status;
 t_list	*prep_env_lst(t_list *env_lst, char **env);
 void	initialize_env_node(t_env *new);
 t_env	*make_env_node(char *key, char *value);
-char	*get_value(char *s);
-char	*get_key(char *s);
+char	*get_env_value(char *s);
+char	*get_env_key(char *s);
 
 /* Check for syntax errors */
 int		check_syntax_errors(char *s);

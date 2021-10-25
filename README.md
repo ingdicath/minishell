@@ -30,7 +30,7 @@
 
 [redirection](https://www.gnu.org/software/bash/manual/html_node/Redirections.html)
 
-[how to use heredoc](https://www.howtogeek.com/719058/how-to-use-here-documents-in-bash-on-linux/)
+[how to use heredoc](https://www.howtogeek.com/719058/how-to-use-do_heredoc-documents-in-bash-on-linux/)
 
 ## install readline libraries
 

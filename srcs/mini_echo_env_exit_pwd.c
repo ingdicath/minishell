@@ -1,6 +1,14 @@
-//
-// Created by Diani on 24/10/2021.
-//
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   mini_echo_env_exit_pwd.c                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/10/25 11:01:26 by dsalaman      #+#    #+#                 */
+/*   Updated: 2021/10/25 11:01:30 by dsalaman      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/exec.h"
 
@@ -51,12 +59,11 @@ int	mini_pwd(char *get_pwd)
 	return (0);
 }
 
-int	mini_exit(char **args)
+void	mini_exit(char **args)
 {
 	int	i;
 	int	j;
 
-	i = 0;
 	if (args[1] == NULL)
 		exit(g_exit_status);
 	if (args[2] == NULL)

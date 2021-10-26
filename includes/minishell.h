@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/05 18:12:53 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/25 17:52:12 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/26 17:19:52 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_parse
 {
 	int						arg_num;
 	int						i;
-	int						ambigous;
+	int						ambiguous;
 	int						ret_value;
 	char					**extra_args;
 	int						outside_quote;

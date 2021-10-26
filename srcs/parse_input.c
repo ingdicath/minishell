@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   parse_pipe.c                                       :+:    :+:            */
+/*   parse_input.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:46:43 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/25 15:05:06 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/26 15:02:10 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	free_commands(char **commands)
 	free(commands);
 }
 
-t_list	*split_by_pipes(t_list *cmds, char *input, t_list *env)
+t_list	*parse_input(t_list *cmds, char *input, t_list *env)
 {
 	char	**commands;
 	t_cmd	*tmp;
@@ -67,7 +67,7 @@ t_list	*split_by_pipes(t_list *cmds, char *input, t_list *env)
 	commands = ft_split(input, -124);
 	while (commands[i])
 	{
-		tmp = get_new_node(commands[i], env);
+		tmp = get_cmd_node(commands[i], env);
 		new = ft_lstnew(tmp);
 		ft_lstadd_back(&cmds, new);
 		i++;

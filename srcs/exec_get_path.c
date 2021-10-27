@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_path.c                                         :+:    :+:            */
+/*   exec_get_path.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:38:49 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/25 11:38:59 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/10/27 17:20:46 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "../includes/minishell.h"
 
 static char	*get_envp(t_list *envp, char *key)
 {
@@ -70,7 +70,7 @@ char	*get_cmd_path(char *cmd, char **paths)
 		{
 			str1 = ft_strjoin(paths[i], cmd);
 			j = open(str1, O_RDONLY);
-			if (j != -1 && j != 13) //check better way to call this numbers
+			if (j != -1 && j != 13) /* check better way to call this numbers */
 				return (str1);
 			free (str1);
 			i++;

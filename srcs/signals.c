@@ -6,12 +6,11 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/14 11:48:27 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/21 11:32:22 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/10/27 17:09:41 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include "../includes/exec.h"
 
 /*
 	rl_on_new_line() -> regenerate the prompt on a newline.

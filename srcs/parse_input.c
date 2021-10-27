@@ -6,12 +6,11 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:46:43 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/26 15:02:10 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/27 17:09:31 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-#include "../includes/parse.h"
 
 static char	replace_pip(char *s)
 {

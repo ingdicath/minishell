@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   redirection.c                                      :+:    :+:            */
+/*   exec_redirection.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:56 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/25 11:01:58 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/10/27 17:21:03 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "../includes/minishell.h"
 
 void	ft_dup2(int fd1, int fd2)
 {
@@ -46,7 +46,7 @@ int	output_redirection(char *file)
 	fd = open (file, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 	if (fd == -1)
 	{
-		if (errno != 14) // replace this,
+		if (errno != 14) /*  replace this, */
 			perror (file);
 		return (1);
 	}
@@ -85,7 +85,7 @@ int	mini_redirect(t_list *redir)
 			return (1);
 		if (redirection->type == 'I' && input_redirection(redirection->file))
 			return (1);
-		if (redirection->type == 'H' && input_redirection("/tmp/file1")) //check this
+		if (redirection->type == 'H' && input_redirection("/tmp/file1")) /* check this */
 			return (1);
 		redir = redir->next;
 	}

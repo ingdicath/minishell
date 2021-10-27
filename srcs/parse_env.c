@@ -6,46 +6,54 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/14 10:53:31 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/14 14:38:17 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/10/27 17:09:24 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "../includes/minishell.h"
 
-//typedef struct s_env
-//{
-//	char			*key;
-//	char			*value;
-//	int				has_equal;
-//	struct s_env	*next;
-//}			t_env;
-//
-//t_env	*g_state;
-//
-//void	parse_env(char **envp, t_env *state)
-//{
-//	int		i;
-//	int		j;
-//	char	*key;
-//	char	*value;
-//
-//	i = 0;
-//	while (envp[i])
-//	{
-//		j = 0;
-//		while (envp[i][j])
-//		{
-//			key = ft_substr(envp[i], 0, j);
-//			value = ft_substr(envp[i], j + 1, ft_strlen(envp[i]) - j - 1);
-//			break ;
-//		}
-//		j++;
-//	}
-//	// update state
-//}
+static char	*get_env_key(char *str)
+{
+	int		i;
+	char	*temp;
 
+	i = 0;
+	temp = NULL;
+	while (str[i] != '=' && str[i] != '\0')
+		i++;
+	temp = ft_substr(str, 0, i);
+	return (temp);
+}
 
-void	parse_env(char **envp)
+static char	*get_env_value(char *str)
+{
+	int		i;
+	char	*temp;
+
+	i = 0;
+	temp = NULL;
+	while (str[i] != '=' && str[i])
+		i++;
+	if (str[i] == '=')
+		temp = ft_substr(str, i + 1, ft_strlen(str) - i);
+	return (temp);
+}
+
+static t_env	*make_env_node(char *key, char *value)
+{
+	t_env	*new;
+
+	new = (t_env *)malloc(sizeof(t_env));
+	if (!new)
+		return (NULL);
+	new->key = NULL;
+	new->value = NULL;
+	new->key = ft_strdup(key);
+	new->value = ft_strdup(value);
+	return (new);
+}
+
+t_list	*parse_env(t_list *env, char **envp)
 {
 	t_list	*new;
 	t_env	*temp;
@@ -60,8 +68,10 @@ void	parse_env(char **envp)
 		value = get_env_value(envp[i]);
 		temp = make_env_node(key, value);
 		new = ft_lstnew(temp);
+		ft_lstadd_back(&env, new);
 		free(key);
 		free(value);
 		i++;
 	}
+	return (env);
 }

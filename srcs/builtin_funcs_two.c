@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   mini_export_unset.c                                :+:    :+:            */
+/*   builtin_funcs_two.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:36 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/25 11:01:40 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/10/27 17:20:34 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "../includes/minishell.h"
 
 int	is_valid_env_name(char *value)
 {
@@ -19,7 +19,7 @@ int	is_valid_env_name(char *value)
 	i = 0;
 	if (!ft_isalpha(value[0]) && value[0] != '_')
 	{
-		printf("minishell: '%s': not a valid identifier\n", value); // factorizar
+		printf("minishell: '%s': not a valid identifier\n", value); /*  factorizar */
 		g_exit_status = 1;
 		return (0);
 	}
@@ -83,7 +83,7 @@ int	mini_export(t_list *envp, char *key, char *arg)
 		temp = envp;
 		envp = envp->next;
 	}
-	env = make_env_node(key, value); //define
+	env = make_env_node(key, value); /* define */
 	temp->next = ft_lstnew(env);
 	free (key);
 	free (value);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   heredoc.c                                          :+:    :+:            */
+/*   exec_heredoc.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:00:54 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/25 11:00:56 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/10/27 17:20:51 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "../includes/minishell.h"
 
 static void	child_signal(int signal)
 {
@@ -24,7 +24,7 @@ static void	here_signal(int signal)
 		exit (1);
 }
 
-// detects if there is reader??, change name of this function
+/*  detects if there is reader??, change name of this function */
 static void	do_heredoc(char *delimiter)
 {
 	int		i;

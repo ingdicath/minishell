@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   mini_echo_env_exit_pwd.c                           :+:    :+:            */
+/*   builtin_funcs_one.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:26 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/25 11:01:30 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/10/27 17:20:29 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "../includes/minishell.h"
 
 static int	ignore_n(char **argv)
 {
@@ -78,7 +78,7 @@ void	mini_exit(char **args)
 			{
 				printf("minishell: exit: %s: ", args[1]);
 				printf("numeric argument required\n");
-				exit (255); //Exit status out of range
+				exit (255); /* Exit status out of range */
 			}
 			j++;
 		}

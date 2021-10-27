@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   prepare_env.c                                      :+:    :+:            */
+/*   exec_env.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:50 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/25 11:01:52 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/10/27 17:20:40 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "../includes/minishell.h"
 
 static int	sort_envp(char **tab, int size)
 {
@@ -56,7 +56,7 @@ int	show_envp(t_list *envp)
 		j = 0;
 		while (tab[i][j] != '=' && tab[i][j] != '\0')
 		{
-			write (1, &tab[i][j], 1); //check this, could be better printf
+			write (1, &tab[i][j], 1); /* check this, could be better printf */
 			j++;
 		}
 		if (tab[i][j] != '\0')
@@ -102,17 +102,4 @@ char	*join_env(t_env *env)
 		return (tab);
 	}
 	return (env->key);
-}
-
-t_env	*make_env_node(char *key, char *value)
-{
-	t_env	*new;
-
-	new = (t_env *)malloc(sizeof(t_env));
-	if (!new)
-		return (NULL);
-	reset_env_node(new);
-	new->key = ft_strdup(key);
-	new->value = ft_strdup(value);
-	return (new);
 }

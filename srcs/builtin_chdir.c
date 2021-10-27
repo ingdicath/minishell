@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   mini_chdir.c                                       :+:    :+:            */
+/*   builtin_chdir.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:17 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/25 11:01:20 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/10/27 17:20:04 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "../includes/minishell.h"
 
 static int	chdir_error(int index, char *dir)
 {
@@ -49,7 +49,7 @@ static void	swap_directory(t_list *envp, char **get_pwd)
 	*pwd = ft_strjoin(*get_pwd, "");
 }
 
-static void	change_directory(char *str, char *dir, char **get_pwd, t_list *envp) //check for better name
+static void	change_directory(char *str, char *dir, char **get_pwd, t_list *envp) /* check for better name */
 {
 	char	*temp;
 

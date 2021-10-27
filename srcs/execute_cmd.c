@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   execute.c                                          :+:    :+:            */
+/*   execute_cmd.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:00:47 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/25 11:00:49 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/10/27 17:21:08 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/exec.h"
+#include "../includes/minishell.h"
 
 void	wait_cmds(int num_cmds)
 {
@@ -44,7 +44,7 @@ void	set_exit_status(int num_cmds)
 	{
 		if (WTERMSIG(g_exit_status) == SIGQUIT)
 			printf("Quit: 3\n");
-		g_exit_status = 128 + WTERMSIG(g_exit_status); //128+n - Fatal error signal “n”
+		g_exit_status = 128 + WTERMSIG(g_exit_status); /* 128+n - Fatal error signal “n” */
 	}
 	wait_cmds(num_cmds);
 }

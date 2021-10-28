@@ -6,7 +6,7 @@
 #    By: dsalaman <dsalaman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/06 13:42:00 by dsalaman      #+#    #+#                  #
-#    Updated: 2021/10/12 16:29:22 by hlin          ########   odam.nl          #
+#    Updated: 2021/10/28 08:08:09 by dsalaman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,13 @@ CFLAGS	=	-Wall -Wextra -Werror
 SRC_DIR =	srcs/
 OBJ_DIR =	objs/
 
-SRCS =  minishell.c
+SRCS =  minishell.c builtin_exec.c builtin_chdir.c builtin_funcs_one.c \
+        builtin_funcs_two.c srcs/exec_env.c srcs/exec_get_path.c \
+        exec_heredoc.c exec_pipes_childs.c exec_redirection.c execute_cmd.c \
+        parse_args.c parse_args_env.c parse_cmd.c parse_cmd_utils.c \
+        parse_env.c parse_input.c parse_redir.c parse_redir_filepath.c \
+        parse_redir_filepath_amb.c parse_redir_filepath_utils.c signals.c \
+        syntax_validation.c syntax_validation_utils.c utils.c
 
 SRC 	=	$(addprefix $(SRC_DIR), $(SRCS))
 OBJS	=	$(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)

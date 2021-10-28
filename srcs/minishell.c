@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/20 20:45:48 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/27 17:09:13 by hlin          ########   odam.nl         */
+/*   Updated: 2021/10/28 13:22:12 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	main(int argc, char **argv, char **envp)
 	t_list	*cmds;
 	t_list	*temp;
 
-	argv = NULL;
+	(void)argv;
 	if (argc != 1)
 	{
 		perror("Usage: ./minishell");
@@ -103,8 +103,8 @@ int	main(int argc, char **argv, char **envp)
 	env = parse_env(NULL, envp);
 	while (1)
 	{
-		signal(SIGINT, handle_signal);
 		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, handle_signal);
 		cmds = NULL;
 		input = get_input(input, env);
 		temp = env;

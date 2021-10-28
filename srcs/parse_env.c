@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-static char	*get_env_key(char *str)
+char	*get_env_key(char *str)
 {
 	int		i;
 	char	*temp;
@@ -25,7 +25,7 @@ static char	*get_env_key(char *str)
 	return (temp);
 }
 
-static char	*get_env_value(char *str)
+char	*get_env_value(char *str)
 {
 	int		i;
 	char	*temp;

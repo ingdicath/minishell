@@ -27,13 +27,29 @@ static void	free_env_list(t_list *env)
 	}
 }
 
+static void	free_redirection(t_list *redirection)
+{
+	t_list	*redir_temp;
+	t_redir	*temp;
+
+	while (redirection != NULL)
+	{
+		redir_temp = redirection;
+		temp = redirection->content;
+		if (temp->file)
+			free(temp->file);
+		free(temp);
+		redirection = redirection->next;
+		free(redir_temp);
+	}
+}
+
 static void	free_cmds(t_list *cmd)
 {
 	t_list		*list_temp;
 	t_cmd		*temp;
 	int			i;
 
-	i = 0;
 	while (cmd != NULL)
 	{
 		list_temp = cmd;
@@ -49,7 +65,7 @@ static void	free_cmds(t_list *cmd)
 			free(temp->args);
 		}
 		if (temp->redir)
-			free_redirect(temp->redir);
+			free_redirection(temp->redir);
 		free(temp);
 		cmd = cmd->next;
 		free(list_temp);
@@ -58,12 +74,10 @@ static void	free_cmds(t_list *cmd)
 
 static char	*get_input(char *input, t_list *env)
 {
-	char	*input;
-
 	input = readline("minishell-> ");
 	if (input == NULL)
 	{
-		ft_putchar_fd("exit\n", 1);
+		ft_putstr_fd("exit\n", 1);
 		free_env_list(env);
 		exit(g_exit_status);
 	}

@@ -35,7 +35,7 @@ int	is_builtin(t_cmd *cmd)
 
 int	execute_builtin(t_cmd *cmd, t_list *envp, int status)
 {
-	char	*pwd_path; /* static char	*gpwd we can't use static variables */
+	static char	*pwd_path; /* static char	*gpwd we can't use static variables */
 	if (pwd_path == NULL) /* check this */
 		pwd_path = getcwd(NULL, 0); /* check this */
 	if (status == CD)

@@ -12,7 +12,7 @@
 
 #include "../includes/minishell.h"
 
-static char	replace_pip(char *s)
+static char	*replace_pip(char *s)
 {
 	int		i;
 	int		quote;
@@ -62,7 +62,7 @@ t_list	*parse_input(t_list *cmds, char *input, t_list *env)
 	int		i;
 
 	i = 0;
-	input = change_pipe(input);
+	input = replace_pip(input);
 	commands = ft_split(input, -124);
 	while (commands[i])
 	{

@@ -19,7 +19,7 @@ static int	ambiguous_value_validation(char *value, char *variable,
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(variable, 2);
-		ft_put_error(": ambiguous redirect");
+		put_err(": ambiguous redirect");
 		free(variable);
 		prs->i = i;
 		return (-1);

@@ -43,7 +43,7 @@ static void	get_filepath_quote(t_redir *redir, char *s,
 
 	if (s[prs->i] == '"')
 	{
-		temp = double_quotes(s, env, prs);
+		temp = get_filepath_double_quote(s, env, prs);
 		tmp = redir->file;
 		redir->file = ft_strjoin(redir->file, temp);
 		free(temp);
@@ -53,7 +53,7 @@ static void	get_filepath_quote(t_redir *redir, char *s,
 	}
 	if (s[prs->i] == '\'')
 	{
-		temp = single_quotes(s, prs);
+		temp = get_filepath_single_quote(s, prs);
 		tmp = redir->file;
 		redir->file = ft_strjoin(redir->file, temp);
 		free(temp);

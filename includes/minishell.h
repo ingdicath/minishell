@@ -80,6 +80,7 @@ typedef struct s_parse
 int		g_exit_status;
 
 /* Preparing environment variables */
+t_env	*make_env_node(char *key, char *value);
 t_list	*parse_env(t_list *env, char **envp);
 
 /* signals */
@@ -90,6 +91,9 @@ int		put_err(char *err_msg);
 int		check_quote(char c, int quote);
 int		redir_error(char *str);
 int		syntax_validation(char *s);
+
+int		get_size(char *s);
+void	parse_cmd(t_cmd *new, char *s, t_list *env, t_parse *prs);
 
 /* parser */
 t_list	*parse_input(t_list *cmds, char *input, t_list *env);

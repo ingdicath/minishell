@@ -93,6 +93,7 @@ int	main(int argc, char **argv, char **envp)
 	t_list	*cmds;
 	t_list	*temp;
 
+	argv = NULL;
 	if (argc != 1)
 	{
 		perror("Usage: ./minishell");

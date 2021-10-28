@@ -39,7 +39,7 @@ char	*get_env_value(char *str)
 	return (temp);
 }
 
-static t_env	*make_env_node(char *key, char *value)
+t_env	*make_env_node(char *key, char *value)
 {
 	t_env	*new;
 

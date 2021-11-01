@@ -14,8 +14,13 @@
 
 int	is_builtin(t_cmd *cmd)
 {
+	printf("comando 1 builtin %s\n",cmd->cmd  ); //delete
 	if (cmd->cmd == NULL)
+	{
+		printf("comando inside builtin %s\n",cmd->cmd  ); //delete
 		return (NONE);
+	}
+
 	else if (ft_strcasecmp(cmd->cmd, "cd") == 0)
 		return (CD);
 	else if (ft_strcasecmp(cmd->cmd, "pwd") == 0)

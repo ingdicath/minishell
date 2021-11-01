@@ -101,6 +101,10 @@ int	main(int argc, char **argv, char **envp)
 	}
 	input = NULL;
 	env = parse_env(NULL, envp);
+
+//	int i = 10; //delete
+
+
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -108,8 +112,13 @@ int	main(int argc, char **argv, char **envp)
 		cmds = NULL;
 		input = get_input(input, env);
 		temp = env;
+
+//		for(int j = 0; j < i; ++j) //delete
+//			printf("%02x\n", ((uint8_t*) cmds)[j]); //delete
+
 		if (input != NULL && !syntax_validation(input))
 		{
+//			printf("inside loop: %p\n", cmds->content);  //delete
 			cmds = parse_input(cmds, input, temp);
 			exec_cmd(cmds, env);
 		}

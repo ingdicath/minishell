@@ -54,6 +54,19 @@ static void	free_commands(char **commands)
 	free(commands);
 }
 
+
+int			ft_array_size(char **array) //delete
+{
+	int		i;
+
+	i = 0;
+	while (array[i] != NULL)
+		i++;
+	return (i);
+}
+
+
+
 t_list	*parse_input(t_list *cmds, char *input, t_list *env)
 {
 	char	**commands;
@@ -62,8 +75,20 @@ t_list	*parse_input(t_list *cmds, char *input, t_list *env)
 	int		i;
 
 	i = 0;
+
+	printf("inside #0 parse_input: %s\n", input); //delete
+
 	input = replace_pip(input);
+
+	printf("inside #1 parse_input: %s\n", input); //delete
+
 	commands = ft_split(input, -124);
+
+	int size = ft_array_size(commands); //delete
+	for (int j = 0; j < size; j++) // delete
+		printf("inside #2 after split parse_input: %s\n", commands[j]); //delete
+
+
 	while (commands[i])
 	{
 		tmp = get_cmd_node(commands[i], env);
@@ -71,8 +96,18 @@ t_list	*parse_input(t_list *cmds, char *input, t_list *env)
 		ft_lstadd_back(&cmds, new);
 		i++;
 	}
+
+	for (int j = 0; j < size; j++) // delete
+		printf("inside #3 after loop parse_input: %s\n", commands[j]); //delete
+
+
 	if (commands)
 		free_commands(commands);
+
+	for (int j = 0; j < size; j++) // delete
+		printf("inside #4 after free command parse_input: %s\n", commands[j]); //delete
+
 	free(input);
+
 	return (cmds);
 }

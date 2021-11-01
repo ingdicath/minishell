@@ -81,14 +81,17 @@ static void	init_cmd_struct(t_cmd *new, char *s, t_list *env)
 	new->cmd = NULL;
 	new->args = NULL;
 	new->redir = NULL;
-	i = 0;
+
 	arg_num = get_size(s);
 	if (ft_strchr(s, '$'))
 		arg_num += count_envvar_args(s, 0, 0, env);
 	new->args = malloc(sizeof(char *) * (arg_num + 1));
 	i = 0;
 	while (i <= arg_num)
-		new->args[i++] = NULL;
+	{
+		new->args[i] = NULL;
+		i++;
+	}
 }
 
 t_cmd	*get_cmd_node(char *s, t_list *env)

@@ -104,7 +104,7 @@ int	main(int argc, char **argv, char **envp)
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);
-		signal(SIGINT, handle_signal);
+		signal(SIGINT, &handle_signal);
 		cmds = NULL;
 		input = get_input(input, env);
 		temp = env;

@@ -56,7 +56,7 @@ int	show_envp(t_list *envp)
 		j = 0;
 		while (tab[i][j] != '=' && tab[i][j] != '\0')
 		{
-			write (1, &tab[i][j], 1); /* check this, could be better printf */
+			printf("%c", tab[i][j]);
 			j++;
 		}
 		if (tab[i][j] != '\0')

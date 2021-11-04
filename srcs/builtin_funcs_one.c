@@ -65,7 +65,10 @@ void	mini_exit(char **args)
 	int	j;
 
 	if (args[1] == NULL)
+	{
+		printf("exit\n");
 		exit(g_exit_status);
+	}
 	if (args[2] == NULL)
 	{
 		i = ft_atoi(args[1]);
@@ -75,16 +78,13 @@ void	mini_exit(char **args)
 		while (args[1][j] != '\0')
 		{
 			if (!ft_isdigit(args[1][j]))
-			{
-				printf("minishell: exit: %s: ", args[1]);
-				printf("numeric argument required\n");
-				exit (255); /* Exit status out of range */
-			}
+				exit_not_num(&args[1]);
 			j++;
 		}
+		printf("exit\n");
 		exit (i);
 	}
-	printf("minishell: exit: too many arguments\n");
+	printf("exit\nminishell: exit: too many arguments\n");
 }
 
 int	mini_echo(char **argv)

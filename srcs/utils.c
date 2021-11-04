@@ -45,3 +45,10 @@ void	ft_swap(char **str1, char **str2)
 	*str1 = *str2;
 	*str2 = temp;
 }
+
+void	exit_not_num(char **args)
+{
+	printf("exit\n");
+	printf("bash: exit: %s: numeric argument required\n", args[1]);
+	exit(255);
+}

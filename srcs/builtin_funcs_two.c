@@ -83,7 +83,7 @@ int	mini_export(t_list *envp, char *key, char *arg)
 		temp = envp;
 		envp = envp->next;
 	}
-	env = make_env_node(key, value); /* define */
+	env = make_env_node(key, value);
 	temp->next = ft_lstnew(env);
 	free (key);
 	free (value);

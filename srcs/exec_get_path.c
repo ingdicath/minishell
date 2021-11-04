@@ -60,7 +60,7 @@ char	*get_cmd_path(char *cmd, char **paths)
 	char	*str2;
 
 	str2 = cmd;
-	if (cmd[0] != '.' || cmd[0] == '/')
+	if (cmd[0] == '.' || cmd[0] == '/')
 		return (cmd);
 	if (cmd[0] != '\0' && paths != NULL)
 	{

@@ -102,7 +102,7 @@ int	mini_echo(char **argv)
 			write (1, argv[i], ft_strlen(argv[i]));
 			i++;
 			if (argv[i] != NULL)
-				printf(" ");
+				write(1, " ", 1);
 		}
 	}
 	if (j == 0)

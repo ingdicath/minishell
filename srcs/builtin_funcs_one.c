@@ -12,6 +12,8 @@
 
 #include "../includes/minishell.h"
 
+void exit_not_number(char *const *args);
+
 static int	ignore_n(char **argv)
 {
 	int	i;
@@ -78,7 +80,7 @@ void	mini_exit(char **args)
 		while (args[1][j] != '\0')
 		{
 			if (!ft_isdigit(args[1][j]))
-				exit_not_num(&args[1]);
+				exit_not_number(args);
 			j++;
 		}
 		printf("exit\n");

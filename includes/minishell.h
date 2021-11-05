@@ -116,7 +116,7 @@ int		ft_strcasecmp(const char *s1, const char *s2);
 void	ft_execve(char *path, char **args, char **tab);
 void	ft_dup2(int fd1, int fd2);
 void	ft_swap(char **str1, char **str2);
-void	exit_not_num(char **args);
+void	exit_not_number(char *const *args);
 
 /* exec*/
 int		exec_cmd(t_list *cmds, t_list *envp);

@@ -60,3 +60,7 @@ cmake-build-debug
 
 # VSC
 .vscode/
+
+# executable
+
+minishell

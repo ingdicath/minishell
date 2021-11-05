@@ -46,9 +46,9 @@ void	ft_swap(char **str1, char **str2)
 	*str2 = temp;
 }
 
-void	exit_not_num(char **args)
+void	exit_not_number(char *const *args)
 {
-	printf("exit\n");
-	printf("bash: exit: %s: numeric argument required\n", args[1]);
-	exit(255);
+	printf("exit\nminishell: exit: %s: ", args[1]);
+	printf("numeric argument required\n");
+	exit (255);
 }

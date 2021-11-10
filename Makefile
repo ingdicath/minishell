@@ -16,7 +16,7 @@ WHITE	=	\033[0m
 NAME	=	minishell
 
 CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g
 
 SRC_DIR =	srcs/
 OBJ_DIR =	objs/

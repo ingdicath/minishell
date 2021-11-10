@@ -55,7 +55,7 @@ static int	count_envvar_args(char *s, int i, int j, t_list *env)
 			key = ft_substr(s, j, i - j);
 			tmp = get_envvar_arg_value(key, env);
 			free(key);
-			if (ft_strchr(tmp, ' '))
+			if (tmp != NULL && ft_strchr(tmp, ' '))
 				ret += get_envvar_arg_num(tmp);
 			free(tmp);
 		}

@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:00:35 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/09 17:08:33 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/10 11:08:51 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int	is_builtin(t_cmd *cmd)
 int	execute_builtin(t_cmd *cmd, t_list *envp, int status)
 {
 	// static char	*pwd_path; /* static char	*gpwd we can't use static variables */
-	char	*pwd_path = NULL;
+	char	*pwd_path;
 	
-	if (pwd_path == NULL) /* check this */
-		pwd_path = getcwd(NULL, 0); /* check this */
+	// if (pwd_path == NULL) /* check this */
+	pwd_path = getcwd(NULL, 0); /* check this */
 	if (status == CD)
 		g_exit_status = mini_chdir(cmd, envp, &pwd_path);
 	else if (status == PWD)

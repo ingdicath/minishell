@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:17 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/09 16:51:55 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/10 11:07:30 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,7 @@ int	mini_chdir(t_cmd *cmd, t_list *envp, char **path)
 		return (chdir_error(3, cmd->args[1]));
 	str = getcwd(NULL, 0);
 	change_directory(str, dir, path, envp);
+	if (!ft_strcmp(cmd->args[1], "-"))
+		printf("%s\n", dir);
 	return (0);
 }

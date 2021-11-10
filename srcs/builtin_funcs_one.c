@@ -6,13 +6,11 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:26 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/27 17:20:29 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/10 13:12:41 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-void exit_not_number(char *const *args);
 
 static int	ignore_n(char **argv)
 {
@@ -64,27 +62,27 @@ int	mini_pwd(char *get_pwd)
 void	mini_exit(char **args)
 {
 	int	i;
-	int	j;
+	int	exit_value;
 
 	if (args[1] == NULL)
 	{
 		printf("exit\n");
 		exit(g_exit_status);
 	}
+	i = 0;
+	if (args[1][0] == '-' || args[1][0] == '+')
+		i++;
+	while (args[1][i] != '\0')
+	{
+		if (!ft_isdigit(args[1][i]))
+			exit_not_number(args[1]);
+		i++;
+	}
 	if (args[2] == NULL)
 	{
-		i = ft_atoi(args[1]);
-		j = 0;
-		if (args[1][0] == '-')
-			j = 1;
-		while (args[1][j] != '\0')
-		{
-			if (!ft_isdigit(args[1][j]))
-				exit_not_number(args);
-			j++;
-		}
+		exit_value = ft_atoi(args[1]);
 		printf("exit\n");
-		exit (i);
+		exit (exit_value);
 	}
 	printf("exit\nminishell: exit: too many arguments\n");
 }

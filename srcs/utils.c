@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:02:04 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/25 11:02:06 by dsalaman      ########   odam.nl         */
+/*   Updated: 2021/11/10 11:57:02 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	ft_swap(char **str1, char **str2)
 	*str2 = temp;
 }
 
-void	exit_not_number(char *const *args)
+void	exit_not_number(char *arg)
 {
-	printf("exit\nminishell: exit: %s: ", args[1]);
+	printf("exit\nminishell: exit: %s: ", arg);
 	printf("numeric argument required\n");
 	exit (255);
 }

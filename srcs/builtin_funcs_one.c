@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:26 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/10 14:13:46 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/10 16:36:16 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,34 +57,6 @@ int	mini_pwd(char *get_pwd)
 	else
 		printf("%s\n", get_pwd);
 	return (0);
-}
-
-void	mini_exit(char **args)
-{
-	int	i;
-	int	exit_value;
-
-	if (args[1] == NULL)
-	{
-		printf("exit\n");
-		exit(g_exit_status);
-	}
-	i = 0;
-	if (args[1][0] == '-' || args[1][0] == '+')
-		i++;
-	while (args[1][i] != '\0')
-	{
-		if (!ft_isdigit(args[1][i]))
-			exit_not_number(args[1]);
-		i++;
-	}
-	if (args[2] == NULL)
-	{
-		exit_value = ft_atoi(args[1]);
-		printf("exit\n");
-		exit (exit_value);
-	}
-	printf("exit\nminishell: exit: too many arguments\n");
 }
 
 int	mini_echo(char **argv)

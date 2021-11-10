@@ -6,7 +6,7 @@
 #    By: dsalaman <dsalaman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/11/06 13:42:00 by dsalaman      #+#    #+#                  #
-#    Updated: 2021/10/28 08:08:09 by dsalaman      ########   odam.nl          #
+#    Updated: 2021/11/10 16:39:16 by hlin          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC_DIR =	srcs/
 OBJ_DIR =	objs/
 
 SRCS =  minishell.c builtin_exec.c builtin_chdir.c builtin_funcs_one.c \
-        builtin_funcs_two.c exec_env.c exec_get_path.c \
+        builtin_funcs_two.c builtin_funcs_exit.c exec_env.c exec_get_path.c \
         exec_heredoc.c exec_pipes_childs.c exec_redirection.c execute_cmd.c \
         parse_args.c parse_args_env.c parse_cmd.c parse_cmd_utils.c \
         parse_env.c parse_input.c parse_redir.c parse_redir_filepath.c \

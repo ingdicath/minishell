@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/11 22:56:59 by hlin          #+#    #+#                 */
-/*   Updated: 2020/11/11 23:16:40 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/11 11:30:39 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strdup(const char *s1)
 	char		*ret;
 	size_t		i;
 
+	if (s1 == NULL)
+		return (NULL);
 	i = ft_strlen(s1);
 	ret = malloc(sizeof(char) * (i + 1));
 	if (ret == NULL)

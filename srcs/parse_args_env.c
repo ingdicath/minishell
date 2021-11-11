@@ -72,7 +72,7 @@ static void	get_variable(char *s, t_list *env, t_parse *prs)
 			prs->var.i++;
 	tmp = ft_substr(s, j, prs->var.i - j);
 	var_va = get_envvar_arg_value(tmp, env);
-    if (var_va != NULL && prs->outside_quote && ft_strchr(var_va, ' '))
+	if (var_va != NULL && prs->outside_quote && ft_strchr(var_va, ' '))
 	{
 		var_va = remove_spaces(var_va);
 		prs->extra_args = ft_split(var_va, ' ');

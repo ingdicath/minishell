@@ -36,6 +36,8 @@ void	close_pipes_fds(int *pipes_fds, int num)
 	}
 }
 
+/* 128 + n -> Fatal error signal “n” */
+
 void	set_exit_status(int num_cmds)
 {
 	if (WIFEXITED(g_exit_status))
@@ -44,13 +46,13 @@ void	set_exit_status(int num_cmds)
 	{
 		if (WTERMSIG(g_exit_status) == SIGQUIT)
 			printf("Quit: 3\n");
-		g_exit_status = 128 + WTERMSIG(g_exit_status); /* 128+n - Fatal error signal “n” */
+		g_exit_status = 128 + WTERMSIG(g_exit_status);
 	}
 	wait_cmds(num_cmds);
 }
 
-/* heredoc stands for "do_heredoc document", is a type of redirection that allows
-* you to pass multiple lines of input to a command */
+/* heredoc stands for "do_heredoc document", is a type of redirection that
+* allows you to pass multiple lines of input to a command */
 
 int	exec_cmd(t_list *cmds, t_list *envp)
 {

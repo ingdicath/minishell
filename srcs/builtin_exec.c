@@ -35,11 +35,9 @@ int	is_builtin(t_cmd *cmd)
 
 int	execute_builtin(t_cmd *cmd, t_list *envp, int status)
 {
-	// static char	*pwd_path; /* static char	*gpwd we can't use static variables */
 	char	*pwd_path;
-	
-	// if (pwd_path == NULL) /* check this */
-	pwd_path = getcwd(NULL, 0); /* check this */
+
+	pwd_path = getcwd(NULL, 0);
 	if (status == CD)
 		g_exit_status = mini_chdir(cmd, envp, &pwd_path);
 	else if (status == PWD)

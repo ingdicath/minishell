@@ -121,6 +121,7 @@ void	ft_swap(char **str1, char **str2);
 int		exec_cmd(t_list *cmds, t_list *envp);
 int		check_heredoc(t_list *cmds);
 void	exec_childs(t_list *cmds, int *pfds, t_list *envp, int i);
+void	exec_minishell(char *input, t_list *env);
 
 /* builtin */
 int		is_builtin(t_cmd *cmd);

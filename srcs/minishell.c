@@ -89,21 +89,11 @@ static char	*get_input(char *input, t_list *env)
 	return (input);
 }
 
-int	main(int argc, char **argv, char **envp)
+void	exec_minishell(char *input, t_list *env)
 {
-	char	*input;
-	t_list	*env;
 	t_list	*cmds;
 	t_list	*temp;
 
-	(void)argv;
-	if (argc != 1)
-	{
-		perror("Usage: ./minishell");
-		return (1);
-	}
-	input = NULL;
-	env = parse_env(NULL, envp);
 	while (1)
 	{
 		signal(SIGQUIT, SIG_IGN);
@@ -119,6 +109,22 @@ int	main(int argc, char **argv, char **envp)
 		free(input);
 		free_cmds(cmds);
 	}
+}
+
+int	main(int argc, char **argv, char **envp)
+{
+	char	*input;
+	t_list	*env;
+
+	(void)argv;
+	if (argc != 1)
+	{
+		perror("Usage: ./minishell");
+		return (1);
+	}
+	input = NULL;
+	env = parse_env(NULL, envp);
+	exec_minishell(input, env);
 	free_env_list(env);
 	return (0);
 }

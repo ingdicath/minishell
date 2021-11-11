@@ -19,7 +19,7 @@ int	is_valid_env_name(char *value)
 	i = 0;
 	if (!ft_isalpha(value[0]) && value[0] != '_')
 	{
-		printf("minishell: '%s': not a valid identifier\n", value); /*  factorizar */
+		printf("minishell: '%s': not a valid identifier\n", value);
 		g_exit_status = 1;
 		return (0);
 	}

@@ -21,11 +21,11 @@ void	exec_childs(t_list *cmds, int *pipes_fds, t_list *envp, int i)
 
 	cmd_path = NULL;
 	tab = convert_list_to_array(envp);
-	num_pipes = ft_lstsize(cmds) + (i / 2) - 1; /* check this */
+	num_pipes = ft_lstsize(cmds) + (i / 2) - 1;
 	if (cmds->next)
 		ft_dup2(pipes_fds[i + 1], 1);
 	if (i != 0)
-		ft_dup2(pipes_fds[i - 2], 0); /* check this */
+		ft_dup2(pipes_fds[i - 2], 0);
 	close_pipes_fds(pipes_fds, num_pipes);
 	cmd = cmds->content;
 	if (mini_redirect(cmd->redir))

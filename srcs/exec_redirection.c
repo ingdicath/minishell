@@ -28,7 +28,7 @@ int	append_redirection(char *file)
 {
 	int	fd;
 
-	fd = open(file, O_WRONLY | O_APPEND | O_TRUNC, S_IRWXU);
+	fd = open(file, O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
 	if (fd == -1)
 	{
 		perror(file);

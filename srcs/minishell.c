@@ -19,12 +19,15 @@ static void	free_env_list(t_list *env)
 	while (env != NULL)
 	{
 		temp = env->content;
-		free(temp->key);
-		free(temp->value);
-		free(env->content);
-		free(env);
+		if (temp->key != NULL)
+			free(temp->key);
+		if (temp->value != NULL)
+			free(temp->value);
+		if (env->content != NULL)
+			free(env->content);
 		env = env->next;
 	}
+	free(env);
 }
 
 static void	free_redirection(t_list *redirection)

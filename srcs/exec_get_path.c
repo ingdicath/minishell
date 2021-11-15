@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:38:49 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/15 10:32:10 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 13:19:37 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ static char	*check_local_cmd(char *str, char *cmd)
 	if (j != -1 && j != 13)
 		return (str);
 	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(cmd + 1, 2);
+	if (cmd[0] == '/')
+		ft_putstr_fd(cmd + 1, 2);
+	else
+		ft_putstr_fd(cmd, 2);
 	ft_putendl_fd(": command not found", 2);
 	return (NULL);
 }

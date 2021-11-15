@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:02:04 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/15 10:27:04 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 13:42:04 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_execve(char *path, char **args, char **tab)
 {
 	execve(path, args, tab);
 	if (errno != 14)
-		perror("minishell");
+		printf("minishell: %s: %s\n", path, strerror(errno));
 	exit (127);
 }
 

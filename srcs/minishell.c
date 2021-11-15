@@ -29,30 +29,21 @@ static void	free_redirection(t_list *redirection)
 	}
 }
 
-static void	free_cmds(t_list *cmd)
+static void	free_cmds(t_list *cmd_list)
 {
 	t_list		*list_temp;
-	t_cmd		*temp;
-	int			i;
+	t_cmd		*cmd_temp;
 
-	while (cmd != NULL)
+	while (cmd_list != NULL)
 	{
-		list_temp = cmd;
-		temp = cmd->content;
-		if (temp->args)
-		{
-			i = 0;
-			while (temp->args[i])
-			{
-				free(temp->args[i]);
-				i++;
-			}
-			free(temp->args);
-		}
-		if (temp->redir)
-			free_redirection(temp->redir);
-		free(temp);
-		cmd = cmd->next;
+		list_temp = cmd_list;
+		cmd_temp = cmd_list->content;
+		if (cmd_temp->args)
+			free_array(cmd_temp->args);
+		if (cmd_temp->redir)
+			free_redirection(cmd_temp->redir);
+		free(cmd_temp);
+		cmd_list = cmd_list->next;
 		free(list_temp);
 	}
 }

@@ -86,7 +86,7 @@ static void	get_variable(char *s, t_list *env, t_parse *prs)
 	free(tmp);
 }
 
-static void	check_envvar_edge_cases(char *s, t_parse *prs)
+static void	check_envvar_edge_cases(char const *s, t_parse *prs)
 {
 	char	*temp;
 	char	*tmp;

@@ -16,7 +16,7 @@ static void	valid_id_error_msg(int status, char *id)
 {
 	if (status == EXPORT)
 		printf("minishell: export: `%s': not a valid identifier\n", id);
-	else if (status == UNSET)
+	else
 		printf("minishell: unset: `%s': not a valid identifier\n", id);
 	g_exit_status = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:02:04 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/15 13:42:04 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 15:13:59 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,9 @@ void	free_env_list(t_list *env)
 	}
 	free(env);
 }
+
+// ft_exit(int num, t_list *env)
+// {
+// 	free_env_list(env);
+// 	exit (num);
+// }

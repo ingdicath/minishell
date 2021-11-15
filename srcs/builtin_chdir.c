@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:17 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/10 11:07:30 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 14:54:59 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	chdir_error(int index, char *dir)
 {
+	printf("index: %d\n", index);
 	if (index == 0)
 		printf("minishell: cd: HOME not set\n");
 	else if (index == 1)
@@ -114,6 +115,8 @@ int	mini_chdir(t_cmd *cmd, t_list *envp, char **path)
 		return (chdir_error(1, NULL));
 	if (cmd->args[1] != NULL && cmd->args[2] != NULL)
 		return (chdir_error(2, NULL));
+	if (!strcmp(dir, ""))
+		return (0);
 	i = chdir(dir);
 	if (i == -1)
 		return (chdir_error(3, cmd->args[1]));

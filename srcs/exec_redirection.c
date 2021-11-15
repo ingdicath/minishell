@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:56 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/11 11:42:58 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 10:36:18 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	append_redirection(char *file)
 	return (0);
 }
 
+/* errno 14: invalid file descriptor */
 int	output_redirection(char *file)
 {
 	int	fd;
@@ -46,7 +47,7 @@ int	output_redirection(char *file)
 	fd = open (file, O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 	if (fd == -1)
 	{
-		if (errno != 14) /*  replace this, */
+		if (errno != 14)
 			perror (file);
 		return (1);
 	}
@@ -85,7 +86,7 @@ int	mini_redirect(t_list *redir)
 			return (1);
 		if (redirection->type == 'I' && input_redirection(redirection->file))
 			return (1);
-		if (redirection->type == 'H' && input_redirection("/tmp/file1")) /* check this */
+		if (redirection->type == 'H' && input_redirection("/tmp/file1"))
 			return (1);
 		redir = redir->next;
 	}

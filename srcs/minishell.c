@@ -6,29 +6,11 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/20 20:45:48 by hlin          #+#    #+#                 */
-/*   Updated: 2021/10/28 13:22:12 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 10:26:55 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static void	free_env_list(t_list *env)
-{
-	t_env	*temp;
-
-	while (env != NULL)
-	{
-		temp = env->content;
-		if (temp->key != NULL)
-			free(temp->key);
-		if (temp->value != NULL)
-			free(temp->value);
-		if (env->content != NULL)
-			free(env->content);
-		env = env->next;
-	}
-	free(env);
-}
 
 static void	free_redirection(t_list *redirection)
 {

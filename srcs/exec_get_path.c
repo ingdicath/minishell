@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:38:49 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/10 14:11:57 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 10:32:10 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*get_cmd_path(char *cmd, char **paths)
 		{
 			str1 = ft_strjoin(paths[i], cmd);
 			j = open(str1, O_RDONLY);
-			if (j != -1 && j != 13) /* check better way to call this numbers */
+			if (j != -1 && j != 13)
 				return (str1);
 			free (str1);
 			i++;

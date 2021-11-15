@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/05 18:12:53 by hlin          #+#    #+#                 */
-/*   Updated: 2021/11/10 17:16:40 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 10:27:19 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int		ft_strcasecmp(const char *s1, const char *s2);
 void	ft_execve(char *path, char **args, char **tab);
 void	ft_dup2(int fd1, int fd2);
 void	ft_swap(char **str1, char **str2);
+void	free_env_list(t_list *env);
 
 /* exec*/
 int		exec_cmd(t_list *cmds, t_list *envp);

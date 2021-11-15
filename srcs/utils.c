@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:02:04 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/10 16:38:09 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 10:27:04 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,22 @@ void	ft_swap(char **str1, char **str2)
 	temp = *str1;
 	*str1 = *str2;
 	*str2 = temp;
+}
+
+void	free_env_list(t_list *env)
+{
+	t_env	*temp;
+
+	while (env != NULL)
+	{
+		temp = env->content;
+		if (temp->key != NULL)
+			free(temp->key);
+		if (temp->value != NULL)
+			free(temp->value);
+		if (env->content != NULL)
+			free(env->content);
+		env = env->next;
+	}
+	free(env);
 }

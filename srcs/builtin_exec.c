@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:00:35 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/10 11:08:51 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 11:30:55 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ int	execute_builtin(t_cmd *cmd, t_list *envp, int status)
 	else if (status == UNSET || status == EXPORT)
 		check_export_unset(cmd, envp, status);
 	else
+	{
+		free (pwd_path);
 		return (0);
+	}
+	free (pwd_path);
 	return (1);
 }
 

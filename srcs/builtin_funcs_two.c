@@ -6,29 +6,41 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:36 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/10/27 17:20:34 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 14:36:17 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-int	is_valid_env_name(char *value)
+static void	valid_id_error_msg(int status, char *id)
+{
+	if (status == EXPORT)
+		printf("minishell: export: `%s': not a valid identifier\n", id);
+	else if (status == UNSET)
+		printf("minishell: unset: `%s': not a valid identifier\n", id);
+	g_exit_status = 1;
+}
+
+static int	valid_envnam(char *value, char *arg, int status)
 {
 	int	i;
 
 	i = 0;
+	if (!ft_strcmp(value, "") && arg != NULL)
+	{
+		valid_id_error_msg(status, arg);
+		return (0);
+	}
 	if (!ft_isalpha(value[0]) && value[0] != '_')
 	{
-		printf("minishell: '%s': not a valid identifier\n", value);
-		g_exit_status = 1;
+		valid_id_error_msg(status, value);
 		return (0);
 	}
 	while (value[i] != 0)
 	{
 		if (value[i] != '_' && !ft_isalnum(value[i]))
 		{
-			printf("minishell: '%s': not a valid identifier\n", value);
-			g_exit_status = 1;
+			valid_id_error_msg(status, value);
 			return (0);
 		}
 		i++;
@@ -67,7 +79,7 @@ int	mini_export(t_list *envp, char *key, char *arg)
 	t_env	*env;
 	t_list	*temp;
 
-	if (!is_valid_env_name(key))
+	if (!valid_envnam(key, arg, EXPORT))
 		return (1);
 	value = get_env_value(arg);
 	while (envp != NULL)
@@ -98,7 +110,7 @@ int	check_export_unset(t_cmd *cmd, t_list *envp, int status)
 	if (status == UNSET)
 	{
 		i = 1;
-		while (cmd->args[i] != NULL && is_valid_env_name(cmd->args[i]))
+		while (cmd->args[i] != NULL && valid_envnam(cmd->args[i], NULL, UNSET))
 		{
 			g_exit_status = mini_unset(envp, cmd->args[i]);
 			i++;

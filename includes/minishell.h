@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/05 18:12:53 by hlin          #+#    #+#                 */
-/*   Updated: 2021/11/15 10:27:19 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 14:36:42 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ int		mini_chdir(t_cmd *cmd, t_list *envp, char **path);
 int		mini_export(t_list *envp, char *key, char *arg);
 int		mini_unset(t_list *envp, char *value);
 int		check_export_unset(t_cmd *cmd, t_list *envp, int status);
-int		is_valid_env_name(char *value);
 
 /* redirection */
 int		mini_redirect(t_list *redir);

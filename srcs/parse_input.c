@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:46:43 by hlin          #+#    #+#                 */
-/*   Updated: 2021/11/15 11:39:31 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 17:15:45 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ static char	*replace_pip(char *s)
 	return (tmp);
 }
 
-static void	free_commands(char **commands)
+void	free_array(char **array)
 {
 	int	i;
 
 	i = 0;
-	while (commands[i])
+	while (array[i])
 	{
-		free(commands[i]);
+		free(array[i]);
 		i++;
 	}
-	free(commands);
+	free(array);
 }
 
 t_list	*parse_input(t_list *cmds, char *input, t_list *env)
@@ -72,7 +72,7 @@ t_list	*parse_input(t_list *cmds, char *input, t_list *env)
 		i++;
 	}
 	if (commands)
-		free_commands(commands);
+		free_array(commands);
 	free(input);
 	return (cmds);
 }

@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/05 18:12:53 by hlin          #+#    #+#                 */
-/*   Updated: 2021/11/15 14:36:42 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 17:15:35 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int		get_size(char *s);
 void	parse_cmd(t_cmd *new, char *s, t_list *env, t_parse *prs);
 
 /* parser */
+void	free_array(char **array);
 t_list	*parse_input(t_list *cmds, char *input, t_list *env);
 t_cmd	*get_cmd_node(char *s, t_list *env);
 t_list	*parse_redir(t_list *redir, char *s, t_list *env, t_parse *prs);

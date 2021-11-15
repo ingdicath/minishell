@@ -6,24 +6,11 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:50 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/15 15:09:47 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/15 17:18:16 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-static void	free_env_array(char **tab) // check diana
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free (tab[i]);
-		i++;
-	}
-	free(tab);
-}
 
 static int	sort_envp(char **tab, int size)
 {
@@ -78,7 +65,7 @@ int	show_envp(t_list *envp)
 			printf("\n");
 		i++;
 	}
-	free_env_array(tab);
+	free_array(tab);
 	return (0);
 }
 

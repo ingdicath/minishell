@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   builtin_funcs_two.c                                :+:    :+:            */
+/*   builtin_funcs_export.c                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:36 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/15 14:36:17 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/16 17:46:04 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,14 @@ static int	valid_envnam(char *value, char *arg, int status)
 	return (1);
 }
 
-int	mini_unset(t_list *envp, char *value)
+static int	valid_export(char *key, char *arg)
 {
-	t_env	*env;
-	t_list	*previous;
-
-	previous = envp;
-	envp = previous->next;
-	while (envp != NULL)
+	if (!valid_envnam(key, arg, EXPORT))
 	{
-		env = envp->content;
-		if (ft_strncmp(env->key, value, ft_strlen(value) + 1) == 0)
-		{
-			previous->next = envp->next;
-			free (env->key);
-			free (env->value);
-			free (env);
-			free (envp);
-		}
-		else
-			previous = previous->next;
-		envp = previous->next;
+		free(key);
+		return (0);
 	}
-	return (0);
+	return (1);
 }
 
 int	mini_export(t_list *envp, char *key, char *arg)
@@ -79,7 +64,7 @@ int	mini_export(t_list *envp, char *key, char *arg)
 	t_env	*env;
 	t_list	*temp;
 
-	if (!valid_envnam(key, arg, EXPORT))
+	if (!valid_export(key, arg))
 		return (1);
 	value = get_env_value(arg);
 	while (envp != NULL)

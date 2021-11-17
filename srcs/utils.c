@@ -33,7 +33,10 @@ void	ft_execve(char *path, char **args, char **tab)
 {
 	execve(path, args, tab);
 	if (errno != 14)
+	{
 		printf("minishell: %s: %s\n", path, strerror(errno));
+		exit (126);
+	}
 	exit (127);
 }
 
@@ -63,9 +66,3 @@ void	free_env_list(t_list *env)
 	}
 	free(env);
 }
-
-// ft_exit(int num, t_list *env)
-// {
-// 	free_env_list(env);
-// 	exit (num);
-// }

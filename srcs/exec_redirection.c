@@ -31,7 +31,7 @@ int	append_redirection(char *file)
 	fd = open(file, O_WRONLY | O_APPEND | O_CREAT, S_IRWXU);
 	if (fd == -1)
 	{
-		perror(file);
+		printf("minishell: %s: %s\n", file, strerror(errno));
 		return (1);
 	}
 	ft_dup2 (fd, 1);
@@ -48,7 +48,7 @@ int	output_redirection(char *file)
 	if (fd == -1)
 	{
 		if (errno != 14)
-			perror (file);
+			printf("minishell: %s: %s\n", file, strerror(errno));
 		return (1);
 	}
 	ft_dup2 (fd, 1);
@@ -63,7 +63,7 @@ int	input_redirection(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		perror(file);
+		printf("minishell: %s: %s\n", file, strerror(errno));
 		return (1);
 	}
 	ft_dup2 (fd, 0);

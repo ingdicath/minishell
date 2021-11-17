@@ -62,7 +62,10 @@ void	set_exit_status(int num_cmds)
 	{
 		if (WTERMSIG(g_exit_status) == SIGQUIT)
 			printf("Quit: 3\n");
-		g_exit_status = 128 + WTERMSIG(g_exit_status);
+		if (g_exit_status == 11)
+			g_exit_status = 0;
+		else
+			g_exit_status = 128 + WTERMSIG(g_exit_status);
 	}
 	wait_cmds(num_cmds);
 }

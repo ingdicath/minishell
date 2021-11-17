@@ -14,7 +14,6 @@
 
 static int	chdir_error(int index, char *dir)
 {
-	printf("index: %d\n", index);
 	if (index == 0)
 		printf("minishell: cd: HOME not set\n");
 	else if (index == 1)

@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/20 20:45:48 by hlin          #+#    #+#                 */
-/*   Updated: 2021/11/15 15:13:44 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/17 23:40:21 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,15 @@ void	exec_minishell(char *input, t_list *env)
 		cmds = NULL;
 		input = get_input(input, env);
 		temp = env;
-		if (input != NULL && !syntax_validation(input))
+		if (input != NULL)
 		{
-			cmds = parse_input(cmds, input, temp);
-			exec_cmd(cmds, env);
+			if (syntax_validation(input))
+				g_exit_status = 258;
+			else
+			{
+				cmds = parse_input(cmds, input, temp);
+				exec_cmd(cmds, env);
+			}
 		}
 		free(input);
 		free_cmds(cmds);

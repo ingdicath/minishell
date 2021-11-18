@@ -66,3 +66,15 @@ void	free_env_list(t_list *env)
 	}
 	free(env);
 }
+
+int	free_key_value(char *key, char *value)
+{
+	if (key && value == NULL)
+		free(key);
+	else
+	{
+		free(key);
+		free(value);
+	}
+	return (0);
+}

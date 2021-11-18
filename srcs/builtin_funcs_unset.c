@@ -12,6 +12,29 @@
 
 #include "../includes/minishell.h"
 
+int	check_export_unset(t_cmd *cmd, t_list *envp, int status)
+{
+	if (status == UNSET)
+		check_if_unset(cmd, envp);
+	else if (status == EXPORT)
+		check_if_export(cmd, envp);
+	return (0);
+}
+
+void	check_if_unset(const t_cmd *cmd, t_list *envp)
+{
+	int	i;
+
+	i = 1;
+	while (cmd->args[i] != NULL)
+	{
+		if (valid_envnam(cmd->args[i], NULL, UNSET))
+			g_exit_status = mini_unset(envp, cmd->args[i]);
+		printf("g_exit_status: %d\n", g_exit_status);
+		i++;
+	}
+}
+
 int	mini_unset(t_list *envp, char *value)
 {
 	t_env	*env;

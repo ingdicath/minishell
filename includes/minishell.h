@@ -118,6 +118,7 @@ void	ft_execve(char *path, char **args, char **tab);
 void	ft_dup2(int fd1, int fd2);
 void	ft_swap(char **str1, char **str2);
 void	free_env_list(t_list *env);
+int		free_key_value(char *key, char *value);
 
 /* exec*/
 int		exec_cmd(t_list *cmds, t_list *envp);
@@ -137,6 +138,9 @@ int		mini_chdir(t_cmd *cmd, t_list *envp, char **path);
 int		mini_export(t_list *envp, char *key, char *arg);
 int		mini_unset(t_list *envp, char *value);
 int		check_export_unset(t_cmd *cmd, t_list *envp, int status);
+void	check_if_unset(const t_cmd *cmd, t_list *envp);
+void	check_if_export(const t_cmd *cmd, t_list *envp);
+int		valid_envnam(char *value, char *arg, int status);
 
 /* redirection */
 int		mini_redirect(t_list *redir);

@@ -21,7 +21,17 @@ static void	valid_id_error_msg(int status, char *id)
 	g_exit_status = 1;
 }
 
-static int	valid_envnam(char *value, char *arg, int status)
+static int	valid_export(char *key, char *arg)
+{
+	if (!valid_envnam(key, arg, EXPORT))
+	{
+		free(key);
+		return (0);
+	}
+	return (1);
+}
+
+int	valid_envnam(char *value, char *arg, int status)
 {
 	int	i;
 
@@ -48,14 +58,20 @@ static int	valid_envnam(char *value, char *arg, int status)
 	return (1);
 }
 
-static int	valid_export(char *key, char *arg)
+void	check_if_export(const t_cmd *cmd, t_list *envp)
 {
-	if (!valid_envnam(key, arg, EXPORT))
+	int		i;
+	char	*key;
+
+	if (cmd->args[1] == NULL)
+		g_exit_status = show_envp(envp);
+	i = 1;
+	while (cmd->args[i] != NULL)
 	{
-		free(key);
-		return (0);
+		key = get_env_key(cmd->args[i]);
+		g_exit_status = mini_export(envp, key, cmd->args[i]);
+		i++;
 	}
-	return (1);
 }
 
 int	mini_export(t_list *envp, char *key, char *arg)
@@ -68,11 +84,7 @@ int	mini_export(t_list *envp, char *key, char *arg)
 		return (1);
 	value = get_env_value(arg);
 	if (!ft_strcmp(key, "_"))
-	{
-		free(key);
-		free(value);
-		return (0);
-	}
+		return (free_key_value(key, value));
 	while (envp != NULL)
 	{
 		env = envp->content;
@@ -82,52 +94,11 @@ int	mini_export(t_list *envp, char *key, char *arg)
 			env->value = value;
 		}
 		if (ft_strncmp(env->key, key, ft_strlen(key) + 1) == 0)
-		{
-			free(key);
-			return (0);
-		}
+			return (free_key_value(key, NULL));
 		temp = envp;
 		envp = envp->next;
 	}
 	env = make_env_node(key, value);
 	temp->next = ft_lstnew(env);
-	free (key);
-	free (value);
-	return (0);
-}
-
-int	check_export_unset(t_cmd *cmd, t_list *envp, int status)
-{
-	int		i;
-	char	*key;
-
-	if (status == UNSET)
-	{
-		i = 1;
-		while (cmd->args[i] != NULL)
-		{
-			if (valid_envnam(cmd->args[i], NULL, UNSET))
-				g_exit_status = mini_unset(envp, cmd->args[i]);
-			printf("g_exit_status: %d\n", g_exit_status);
-			i++;
-		}
-//		while (cmd->args[i] != NULL && valid_envnam(cmd->args[i], NULL, UNSET))
-//		{
-//			g_exit_status = mini_unset(envp, cmd->args[i]);
-//			i++;
-//		}
-	}
-	else if (status == EXPORT)
-	{
-		if (cmd->args[1] == NULL)
-			g_exit_status = show_envp(envp);
-		i = 1;
-		while (cmd->args[i] != NULL)
-		{
-			key = get_env_key(cmd->args[i]);
-			g_exit_status = mini_export(envp, key, cmd->args[i]);
-			i++;
-		}
-	}
-	return (0);
+	return (free_key_value(key, value));
 }

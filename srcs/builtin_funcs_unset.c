@@ -30,7 +30,6 @@ void	check_if_unset(const t_cmd *cmd, t_list *envp)
 	{
 		if (valid_envnam(cmd->args[i], NULL, UNSET))
 			g_exit_status = mini_unset(envp, cmd->args[i]);
-		printf("g_exit_status: %d\n", g_exit_status);
 		i++;
 	}
 }

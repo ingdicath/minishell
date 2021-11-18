@@ -62,6 +62,7 @@ static char	*get_input(char *input, t_list *env)
 	return (input);
 }
 
+/* 258, invalid syntax */
 void	exec_minishell(char *input, t_list *env)
 {
 	t_list	*cmds;

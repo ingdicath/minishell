@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:36 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/16 17:46:04 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/21 23:05:04 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,17 @@
 static void	valid_id_error_msg(int status, char *id)
 {
 	if (status == EXPORT)
-		printf("minishell: export: `%s': not a valid identifier\n", id);
+	{
+		ft_putstr_fd("minishell: export: `", 2);
+		ft_putstr_fd(id, 2);
+		ft_putendl_fd("': not a valid identifier", 2);
+	}
 	else
-		printf("minishell: unset: `%s': not a valid identifier\n", id);
+	{
+		ft_putstr_fd("minishell: unset: `", 2);
+		ft_putstr_fd(id, 2);
+		ft_putendl_fd("': not a valid identifier", 2);
+	}
 	g_exit_status = 1;
 }
 

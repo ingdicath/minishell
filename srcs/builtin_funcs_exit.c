@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 16:36:00 by hlin          #+#    #+#                 */
-/*   Updated: 2021/11/18 00:04:35 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/21 23:16:12 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ static char	*trim_space(char *str)
 	while (str[end] && str[end] == ' ')
 		end--;
 	return (ft_substr(str, start, end - start + 1));
+}
+
+static void	print_tmargs_err(void)
+{
+	printf("exit\n");
+	ft_putendl_fd("minishell: exit: too many arguments", 2);
 }
 
 void	mini_exit(char **args)
@@ -59,5 +65,5 @@ void	mini_exit(char **args)
 		printf("exit\n");
 		exit (i);
 	}
-	printf("exit\nminishell: exit: too many arguments\n");
+	print_tmargs_err();
 }

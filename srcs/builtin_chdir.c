@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:17 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/15 14:54:59 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/21 23:01:21 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 static int	chdir_error(int index, char *dir)
 {
 	if (index == 0)
-		printf("minishell: cd: HOME not set\n");
+		ft_putstr_fd("minishell: cd: HOME not set\n", 2);
 	else if (index == 1)
-		printf("minishell: cd: OLDPWD not set\n");
+		ft_putstr_fd("minishell: cd: OLDPWD not set\n", 2);
 	else if (index == 2)
-		printf("minishell: cd: too many arguments\n");
+		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
 	else if (index == 3)
-		printf("minishell: cd: %s %s\n", dir, strerror(errno));
+	{
+		ft_putstr_fd("minishell: cd: ", 2);
+		ft_putstr_fd(dir, 2);
+		ft_putstr_fd(": ", 2);
+		ft_putendl_fd(strerror(errno), 2);
+	}
 	else
 	{
-		printf("cd: error retrieving current directory: getcwd: ");
-		printf("cannot access parent directories: ");
-		printf("No such file or directory\n");
+		ft_putstr_fd("cd: error retrieving current directory: getcwd: ", 2);
+		ft_putstr_fd("cannot access parent directories: ", 2);
+		ft_putstr_fd("No such file or directory\n", 2);
 	}
 	return (1);
 }
@@ -122,6 +127,6 @@ int	mini_chdir(t_cmd *cmd, t_list *envp, char **path)
 	str = getcwd(NULL, 0);
 	change_directory(str, dir, path, envp);
 	if (!ft_strcmp(cmd->args[1], "-"))
-		printf("%s\n", dir);
+		ft_putendl_fd(dir, 1);
 	return (0);
 }

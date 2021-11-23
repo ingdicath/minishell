@@ -6,7 +6,7 @@
 /*   By: dsalaman <dsalaman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/25 11:01:56 by dsalaman      #+#    #+#                 */
-/*   Updated: 2021/11/21 23:52:20 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/22 10:12:21 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	input_redirection(char *file)
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(file, 2);
 		ft_putstr_fd(": ", 2);
-		ft_putendl_fd(strerror(errno), 2);;
+		ft_putendl_fd(strerror(errno), 2);
 		return (1);
 	}
 	ft_dup2 (fd, 0);

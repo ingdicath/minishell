@@ -6,7 +6,7 @@
 /*   By: hlin <hlin@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/10 16:36:00 by hlin          #+#    #+#                 */
-/*   Updated: 2021/11/22 10:25:32 by hlin          ########   odam.nl         */
+/*   Updated: 2021/11/21 23:16:12 by hlin          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@ static char	*trim_space(char *str)
 	return (ft_substr(str, start, end - start + 1));
 }
 
-static void	print_tmargs_err(char *str)
+static void	print_tmargs_err(void)
 {
-	free(str);
-	ft_putendl_fd("exit", 1);
+	printf("exit\n");
 	ft_putendl_fd("minishell: exit: too many arguments", 2);
 }
 
@@ -66,5 +65,5 @@ void	mini_exit(char **args)
 		printf("exit\n");
 		exit (i);
 	}
-	print_tmargs_err(str);
+	print_tmargs_err();
 }

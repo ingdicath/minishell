@@ -6,7 +6,7 @@ CODAM project Curriculum, subject updated on May 2021.
 - **Project type**: Unix logic.
 - **Objective**: Create a simple shell, understanding concepts about processes and file descriptors.
 
-This is a group project developed by [H. Lin] (https://github.com/Hz-Lin) & [D. Salamanca] (https://github.com/ingdicath)
+This is a group project developed by [H. Lin](https://github.com/Hz-Lin) & [D. Salamanca](https://github.com/ingdicath)
 
 ----
 ## Requirements
